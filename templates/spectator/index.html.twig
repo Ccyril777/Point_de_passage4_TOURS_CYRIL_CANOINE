@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spectator index{% endblock %}
+
+{% block body %}
+    <h1>Spectator index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Address</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for spectator in spectators %}
+            <tr>
+                <td>{{ spectator.id }}</td>
+                <td>{{ spectator.firstName }}</td>
+                <td>{{ spectator.lastName }}</td>
+                <td>{{ spectator.email }}</td>
+                <td>{{ spectator.password }}</td>
+                <td>{{ spectator.role }}</td>
+                <td>{{ spectator.address }}</td>
+                <td>
+                    <a href="{{ path('spectator_show', {'id': spectator.id}) }}">show</a>
+                    <a href="{{ path('spectator_edit', {'id': spectator.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('spectator_new') }}">Create new</a>
+{% endblock %}
